@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halaman Komunikasi</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src='{{ url_for("static", filename="index.js") }}'></script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* css untuk btn logout start */
+        .profile {
+            font-size: 12px;
+            cursor: pointer;
+            position: absolute;
+            right: 10%;
+        }
+
+        /* css untuk btn logout end */
+
+
+        /* Style for the chat button */
+        .message-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style for the chat form */
+        #chatForm {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            max-width: 500px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        /* Style for chat input and button */
+        #chatInput {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+
+        /* Style for the chat messages container */
+        #chatMessages {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the chat message */
+        #chatMessages p {
+            margin: 5px 0;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/home"><img src="static/New_Logo.png" alt="" width="150" height="50"
+                    class="ne-2">
+                <b></b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="about">About US</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">ASIK</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="aspirasi">Aspirasi</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="sosialisasi">Sosialisasi</a></li>
+                            <li><a class="dropdown-item" href="komunikasi">Komunikasi</a></li>
+                        </ul>
+                    </li>   
+                    <div class="profile dropdown text-end">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/static/{{user_info.profile_pic_real}}" alt="mdo" width="32" height="32"
+                                class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="/profile">{{user_info.firstName}}</a></li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Header Start -->
+    <section>
+        <header class="">
+            <div class="">
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="static/bgaspirasi.png" class="d-block w-100" alt="..." height="">
+                            <div class="carousel-caption d-none d-md-block text-dark">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="static/bgsosialisasi.png" class="d-block w-100" alt="..." height="">
+                            <div class="carousel-caption d-none d-md-block text-dark">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="static/bgkomunikasi.png" class="d-block w-100" alt="..." height="">
+                            <div class="carousel-caption d-none d-md-block text-dark">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </section>
+    <!-- Header end -->
+
+    <!-- Content start -->
+    <section>
+        <div class="container-fluid py-5 text-center">
+            <div class="row">
+                <div class="col">
+                    <h2>Komunikasi</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <p>“Komunikasi merupakan kegiatan dimana seseorang menyampaikan pesan melalui media tertentu kepada
+                        orang lain dan sesudah menerima pesan kemudian memberikan tanggapan kepada pengirim pesan”.</p>
+                   <a target="_blank" href="https://www.instagram.com/aspirasimasyarakat2023?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr"><button class="message-button" >Hubungi Kami</button></a> 
+
+                </div>
+                <div id="chatForm">
+                    <form id="chatFormElement">
+                        <input type="text" id="chatInput" placeholder="Type your message...">
+                        <button class="btn btn-primary" type="submit">Kirim</button>
+                    </form>
+                    <div id="chatMessages"></div>
+                    <button class="btn btn-danger" onclick="clearMessages()">Hapus</button>
+                    <button class="btn btn-danger" onclick="closeChatForm()">Kembali</button>
+                </div>
+
+                <script>
+                    function openChatForm() {
+                        document.getElementById('chatForm').style.display = 'block';
+                    }
+
+                    document.getElementById('chatFormElement').addEventListener('submit', function (event) {
+                        event.preventDefault();
+                        var message = document.getElementById('chatInput').value;
+                        var newMessage = document.createElement('p');
+                        newMessage.textContent = message;
+                        document.getElementById('chatMessages').appendChild(newMessage);
+                        document.getElementById('chatInput').value = '';
+                    });
+
+                    function clearMessages() {
+                        document.getElementById('chatMessages').innerHTML = '';
+                    }
+
+                    function closeChatForm() {
+                        document.getElementById('chatForm').style.display = 'none';
+                    }
+                </script>
+            </div>
+
+    </section>
+    <!-- Content start -->
+
+    <!-- footer start -->
+    <section>
+        <!-- Footer-->
+        <footer class="py-5 bg-primary">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; ASIK | Aspirasi | Sosialisasi | Komunikasi</p>
+            </div>
+            <div class="container">
+                <p class="m-0 text-center text-white">Media Sosial</p>
+                <div class="container">
+                    <p class="m-0 text-center text-white">
+                        <a class="m-0 text-center text-white" href="https://www.instagram.com/aspirasimasyarakat2023?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr">Instagram</a>
+                    </p>
+                </div>
+                <div class="col-sm-12 col-lg-3"></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </section>
+    <!-- footer end -->
+
+</body>
+
+</html>

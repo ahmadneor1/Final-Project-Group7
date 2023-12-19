@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kirim Aspirasi</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src='{{ url_for("static", filename="index.js") }}'></script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* css untuk btn logout start */
+        .profile {
+            font-size: 12px;
+            cursor: pointer;
+            position: absolute;
+            right: 10%;
+        }
+
+        /* css untuk btn logout end */
+
+        /* css untuk form aspirasi */
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f4f4f4; */
+            background-image: url('https://cdn0-production-images-kly.akamaized.net/wENNaN6STjTCnNtCTjMNlmjnZq4=/469x260/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/834656/original/010130700_1427111888-bagroun3.jpg');
+            margin: 0;
+            margin-top: 20px;
+            padding: 0;
+
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"],
+        textarea,
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="button"] {
+            background-color: #ff0000;
+            /* Warna merah */
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+
+        /* Optional: Style for better readability on small screens */
+        @media screen and (max-width: 600px) {
+            form {
+                max-width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/home"><img src="static/New_Logo.png" alt="" width="150" height="50"
+                    class="ne-2">
+                <b></b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="about">About US</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">ASIK</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="aspirasi">Aspirasi</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="sosialisasi">Sosialisasi</a></li>
+                            <li><a class="dropdown-item" href="komunikasi">Komunikasi</a></li>
+                        </ul>
+                    </li>   
+                    <div class="profile dropdown text-end">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/static/{{user_info.profile_pic_real}}" alt="mdo" width="32" height="32"
+                                class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="/profile">{{user_info.firstName}}</a></li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="mt-4">
+        <h2>Form Aspirasi</h2>
+
+        <form action="/kirimAspirasi/save" method="post">
+            <!-- Masukan nama -->
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+            <br>
+
+            <!-- Masukan judul aspirasi -->
+            <label for="judul">Judul Aspirasi:</label>
+            <input type="text" id="judul" name="judul" required>
+            <br>
+
+            <!-- Masukan laporan aspirasi -->
+            <label for="laporan">Laporan Aspirasi:</label>
+            <textarea id="laporan" name="laporan" rows="4" required></textarea>
+            <br>
+
+            <!-- Pilih tanggal -->
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" id="tanggal" name="tanggal" required>
+            <br>
+
+            <!-- Pilih lokasi -->
+            <label for="lokasi">Pilih Lokasi:</label>
+            <select id="lokasi" name="lokasi" required>
+                <option value="Cikoneng">Cikoneng</option>
+                <option value="Cikoneng">Cikoneng</option>
+                <option value="Curuglemo">Curuglemo</option>
+                <option value="Giripawana">Giripawana</option>
+                <option value="Gunungsari">Gunungsari</option>
+                <option value="Kurungkambing">Kurungkambing</option>
+                <option value="Manadalasari">Manadalasari</option>
+                <option value="Mandalawangi">Mandalawangi</option>
+                <option value="Nembol">Nembol</option>
+                <option value="Pandat">Pandat</option>
+                <option value="Panjangjaya">Panjangjaya</option>
+                <option value="Pari">Pari</option>
+                <option value="Ramea">Ramea</option>
+                <option value="Sinarjaya">Sinarjaya</option>
+                <option value="Sinargalih">Sinargalih</option>
+                <!-- Tambahkan pilihan lokasi sesuai kebutuhan -->
+            </select>
+            <br>
+
+            <!-- Pilih kategori aspirasi -->
+            <label for="kategori">Pilih Kategori Aspirasi:</label>
+            <select id="kategori" name="kategori" required>
+                <option value="Ekonomi">Ekonomi</option>
+                <option value="Kesehatan">Kesehatan</option>
+                <option value="Lingkungan Sarana Prasarana">Lingkungan Sarana Prasarana</option>
+                <!-- Tambahkan pilihan kategori sesuai kebutuhan -->
+            </select>
+            <br>
+
+            <input type="submit" value="Kirim">
+            <input type="button" value="Batal"
+                onclick="alert('Anda yakin ingin membatalkan?'); window.location.href='aspirasi.html'">
+        </form>
+
+        <script>
+            function validateForm() {
+                // Memeriksa apakah setiap field telah diisi
+                var judul = document.getElementById('judul').value;
+                var laporan = document.getElementById('laporan').value;
+                var tanggal = document.getElementById('tanggal').value;
+                var lokasi = document.getElementById('lokasi').value;
+                var kategori = document.getElementById('kategori').value;
+
+                if (judul === '' || laporan === '' || tanggal === '' || lokasi === '' || kategori === '') {
+                    // Menampilkan peringatan jika ada field yang kosong
+                    alert('Harap isi semua field sebelum mengirimkan formulir.');
+                    return false; // Mencegah pengiriman formulir jika ada field yang kosong
+                } else {
+                    // Menampilkan alert jika formulir berhasil dikirim
+                    alert('Formulir berhasil dikirim!');
+                    return true; // Lanjutkan pengiriman formulir jika semua field diisi
+                }
+            }
+        </script>
+
+    </section>
+
+    <!-- footer start -->
+    <section>
+        <!-- Footer-->
+        <footer class="py-5 bg-primary">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; ASIK | Aspirasi | Sosialisasi | Komunikasi</p>
+            </div>
+            <div class="container">
+                <p class="m-0 text-center text-white">Media Sosial</p>
+                <div class="container">
+                    <p class="m-0 text-center text-white">
+                        <a class="m-0 text-center text-white" href="https://www.instagram.com/aspirasimasyarakat2023?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr">Instagram</a>
+                    </p>
+                </div>
+                <div class="col-sm-12 col-lg-3"></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </section>
+    <!-- footer end -->
+
+</body>
+
+</html>
